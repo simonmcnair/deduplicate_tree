@@ -131,11 +131,9 @@ def delete_files(to_delete, dry_run=True):
             print(f"  [REFERENCE]    {safe_path}")
             print(f"  {'[WOULD DELETE]' if dry_run else '[DELETING]'} {clean_path}")
             print(f"  [SHA256]:{checksum}  [SIZE]:{format_size(file_size)}\n")
-        
-  #         print(f"  {'[WOULD DELETE]' if dry_run else '[DELETING]'} {rel_path} ({format_size(file_size)})")
-  #          
+         
             if not dry_run:
-                os.remove(filepath)
+                os.remove(clean_path)
                 deleted_count += 1
         except Exception as e:
             print(f"  ERROR with {rel_path}: {e}")
