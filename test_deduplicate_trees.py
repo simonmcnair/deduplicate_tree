@@ -117,7 +117,16 @@ def test_scan_directory_tree():
         test.assert_equal(len(file_map), 4, "Found 4 files")
         
         # Test 2: Relative paths are correct
-        expected_paths = {"file1.txt", "file2.txt", "subdir/file3.txt", "subdir/nested/file4.txt"}
+
+        # Define paths using forward slashes (Path handles the conversion)
+        expected_paths = {
+            Path("file1.txt"),
+            Path("file2.txt"),
+            Path("subdir/file3.txt"),
+            Path("subdir/nested/file4.txt")
+        }
+
+        #expected_paths = {"file1.txt", "file2.txt", "subdir/file3.txt", "subdir/nested/file4.txt"}
         actual_paths = set(file_map.keys())
         test.assert_equal(actual_paths, expected_paths, "Correct relative paths")
         
