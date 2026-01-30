@@ -53,10 +53,12 @@ def scan_directory_tree(root_path, verbose=False):
     file_count = 0
     for dirpath, dirnames, filenames in os.walk(root):
         for filename in filenames:
+            print(f"Scanning: {filename}")
             filepath = Path(dirpath) / filename
             relative_path = filepath.relative_to(root)
             
             checksum = calculate_sha256(filepath)
+            print(f"{filename} checksum is {checksum}")
             if checksum:
                 file_map[str(relative_path)] = (str(filepath), checksum)
                 file_count += 1
