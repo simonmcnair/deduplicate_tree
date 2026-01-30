@@ -33,10 +33,10 @@ class TestCase:
     def assert_equal(self, actual, expected, msg=""):
         if actual == expected:
             self.passed += 1
-            print(f"  ✓ {msg or 'Assertion passed'}")
+            print(f"  {msg or 'Assertion passed'}")
         else:
             self.failed += 1
-            print(f"  ✗ {msg or 'Assertion failed'}")
+            print(f"  {msg or 'Assertion failed'}")
             print(f"    Expected: {expected}")
             print(f"    Got: {actual}")
     
