@@ -327,11 +327,11 @@ def main():
     
     print("=" * 70)
     if all_passed:
-        print("✓ ALL TESTS PASSED")
+        print("ALL TESTS PASSED")
         print("=" * 70)
         return 0
     else:
-        print("✗ SOME TESTS FAILED")
+        print("SOME TESTS FAILED")
         print("=" * 70)
         return 1
 
