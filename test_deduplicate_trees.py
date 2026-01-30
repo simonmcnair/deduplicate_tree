@@ -127,7 +127,8 @@ def test_scan_directory_tree():
         }
 
         #expected_paths = {"file1.txt", "file2.txt", "subdir/file3.txt", "subdir/nested/file4.txt"}
-        actual_paths = set(file_map.keys())
+        #actual_paths = set(file_map.keys())
+        actual_paths = {Path(p) for p in file_map.keys()}
         test.assert_equal(actual_paths, expected_paths, "Correct relative paths")
         
         # Test 3: Checksums are calculated
@@ -174,7 +175,8 @@ def test_find_duplicates():
         # Test 2: Correct file marked for deletion
         if to_delete:
             deleted_rel_path = to_delete[0][1]
-            test.assert_equal(deleted_rel_path, "file1.txt", "file1.txt marked for deletion")
+            #test.assert_equal(deleted_rel_path, "file1.txt", "file1.txt marked for deletion")
+            test.assert_equal(Path(deleted_rel_path), Path("file1.txt"), "file1.txt marked for deletion")
     
     return test.summary()
 
