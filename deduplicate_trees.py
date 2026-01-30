@@ -83,7 +83,8 @@ def find_duplicates(safe_map, clean_map, verbose=False):
             safe_filepath, safe_checksum = safe_map[rel_path]
             
             if clean_checksum == safe_checksum:
-                to_delete.append((clean_filepath, rel_path))
+                #to_delete.append((clean_filepath, rel_path))
+                to_delete.append((clean_filepath, safe_filepath, clean_checksum))
                 if verbose:
                     print(f"  Match found: {rel_path}")
     
@@ -116,14 +117,20 @@ def delete_files(to_delete, dry_run=True):
     else:
         print("DELETING FILES")
     print(f"{'=' * 70}\n")
-    
-    for filepath, rel_path in to_delete:
+
+  # for filepath, rel_path in to_delete:
+    for clean_path, safe_path, checksum in to_delete:
         try:
-            file_size = os.path.getsize(filepath)
+            file_size = os.path.getsize(clean_path)
             total_size += file_size
             
-            print(f"  {'[WOULD DELETE]' if dry_run else '[DELETING]'} {rel_path} ({format_size(file_size)})")
-            
+            # Display sequential information for ease of reading
+            print(f"  [REFERENCE]    {safe_path}")
+            print(f"  {'[WOULD DELETE]' if dry_run else '[DELETING]'} {clean_path}")
+            print(f"  [SHA256]:{checksum}  [SIZE]:{format_size(file_size)}\n")
+        
+  #         print(f"  {'[WOULD DELETE]' if dry_run else '[DELETING]'} {rel_path} ({format_size(file_size)})")
+  #          
             if not dry_run:
                 os.remove(filepath)
                 deleted_count += 1
