@@ -838,7 +838,8 @@ def main():
 if __name__ == "__main__":
     sys.exit(main())
     test.assert_true(checksum is not None, "Checksum is present")
-    return test.summary()
+
+return test.summary()
 
 
 def test_integration_dry_run():
