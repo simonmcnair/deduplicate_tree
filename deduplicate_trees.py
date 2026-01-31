@@ -136,7 +136,7 @@ def delete_files(to_delete, dry_run=True):
                 os.remove(clean_path)
                 deleted_count += 1
         except Exception as e:
-            print(f"  ERROR with {rel_path}: {e}")
+            print(f"  ERROR with {clean_path}: {e}")
     
     print(f"\n{'=' * 70}")
     print(f"Summary:")
